@@ -137,6 +137,35 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>10.0.4</version>
+                <configuration>
+                  <nvdApiKey>9a3fa92b-59ab-4906-bf1c-a5a1796d6251  </nvdApiKey>
+                  <failBuildOnCVSS>8</failBuildOnCVSS>
+              </configuration>
+		    </plugin>
+			<plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <configuration>
+            <projectType>library</projectType>
+            <schemaVersion>1.5</schemaVersion>
+            <includeBomSerialNumber>true</includeBomSerialNumber>
+            <includeCompileScope>true</includeCompileScope>
+            <includeProvidedScope>true</includeProvidedScope>
+            <includeRuntimeScope>true</includeRuntimeScope>
+            <includeSystemScope>true</includeSystemScope>
+            <includeTestScope>false</includeTestScope>
+            <includeLicenseText>false</includeLicenseText>
+            <outputReactorProjects>true</outputReactorProjects>
+            <outputFormat>all</outputFormat>
+            <outputName>bom</outputName>
+            <outputDirectory>${project.build.directory}</outputDirectory><!-- usually target, if not redefined in pom.xml -->
+            <verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
+        </configuration>
+    </plugin>
 		</plugins>
 	</build>
 </project>
